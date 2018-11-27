@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SpideyMessenger</string>
+    <string name="nombre_de_usuario">Nombre de Usuario</string>
 </resources>
