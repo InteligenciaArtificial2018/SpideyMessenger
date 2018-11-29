@@ -11,10 +11,10 @@
             android:id="@+id/lblVolverRegistro_Login"
             android:textColor="@android:color/white"
             android:textStyle="bold" android:textSize="18sp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintTop_toBottomOf="@+id/txtPassword_login"
-            app:layout_constraintEnd_toEndOf="@+id/txtPassword_login"
-            app:layout_constraintStart_toStartOf="@+id/txtPassword_login"/>
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/btnIniciar_login"
+            app:layout_constraintEnd_toEndOf="@+id/btnIniciar_login"
+            app:layout_constraintStart_toStartOf="@+id/btnIniciar_login"/>
     <EditText
             android:layout_width="0dp"
             android:layout_height="50dp"
@@ -37,4 +37,12 @@
             app:layout_constraintEnd_toEndOf="@+id/editText" app:layout_constraintStart_toStartOf="@+id/editText"
             android:background="@android:color/white" android:hint="Contraseña" android:paddingLeft="25dp"
             android:drawableLeft="@drawable/ic_passwordusuario" android:drawablePadding="25dp"/>
+    <Button
+            android:text="Iniciar Sesion"
+            android:layout_width="318dp"
+            android:layout_height="0dp"
+            android:id="@+id/btnIniciar_login" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/txtPassword_login"
+            app:layout_constraintEnd_toEndOf="@+id/txtPassword_login"
+            app:layout_constraintStart_toStartOf="@+id/txtPassword_login"/>
 </android.support.constraint.ConstraintLayout>
