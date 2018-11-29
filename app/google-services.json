@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "829808687136",
+    "firebase_url": "https://spideymessenger.firebaseio.com",
+    "project_id": "spideymessenger",
+    "storage_bucket": "spideymessenger.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:829808687136:android:72debdc0c45ae094",
+        "android_client_info": {
+          "package_name": "apps.kata.spideymessenger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "829808687136-6temr36ce1h6b2o41fh5okvio793p7dg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBy0F0UNwNsmF596bjEJ-AHSRX8CGO1E3s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
