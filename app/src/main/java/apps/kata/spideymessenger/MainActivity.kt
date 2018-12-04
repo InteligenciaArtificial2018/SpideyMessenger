@@ -32,22 +32,11 @@ class MainActivity : AppCompatActivity() {
         val password = txtPassword_registro.text.toString()
 
         // Validar que los valores de las variables nombreUsuario, correo y password no
-        // se introduzcan con valores vacios o incorrectos
-        if (nombreUsuario.isEmpty()){
-            Toast.makeText(this, "Debe de ingresar información en : Nombre de usuario", Toast.LENGTH_LONG).show()
+        // se introduzcan con valores vacios
+        if (nombreUsuario.isEmpty() || correo.isEmpty() || password.isEmpty()){
+            Toast.makeText(this, "No se pueden dejar datos en blanco", Toast.LENGTH_LONG).show()
             return
         }
-
-        if (correo.isEmpty()){
-            Toast.makeText(this, "Debe de ingresar información en : Correo", Toast.LENGTH_LONG).show()
-            return
-        }
-
-        if (password.isEmpty()){
-            Toast.makeText(this, "Debe de ingresar información en : Contraseña", Toast.LENGTH_LONG).show()
-            return
-        }
-
 
         // Implementacion de Firebase
         // Creando una instancia de auteticacion con el correo y la contraseña
@@ -60,12 +49,12 @@ class MainActivity : AppCompatActivity() {
                     return@addOnCompleteListener
                 } else {
                     // si es completado con exito
-                    Toast.makeText(this, "Se ha creado exitosamente el registro con un id de Usuario: ${it.result!!.user.uid}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Su cuenta se ha creado con exito", Toast.LENGTH_SHORT).show()
                 }
             }
             // Manipulando la Excepcion de ".addOnFailureListener", si falla al crear un usuario
             .addOnFailureListener{
-                Toast.makeText(this, "Fallo al crear usuario: ${it.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error al crear su cuenta, Porfavor ingrese los datos correctos", Toast.LENGTH_LONG).show()
             }
     }
 }
