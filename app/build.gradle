@@ -34,6 +34,11 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.1'
     // Agregando auteticaciones de Firebase
     implementation 'com.google.firebase:firebase-auth:16.0.2'
+    // Agregando Cloud Storage de Firebase
+    implementation 'com.google.firebase:firebase-storage:16.0.2'
+    // Agregando Cloud Base de Datos de Firebase
+    implementation 'com.google.firebase:firebase-database:16.0.2'
+
 }
 
 // Agregando plugin de Firebase
