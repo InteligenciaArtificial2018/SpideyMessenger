@@ -5,14 +5,14 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity" android:background="@color/inicioLogin">
+        tools:context=".RegistroActivity" android:background="@color/inicioLogin">
 
     <EditText
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/txtUsuario_registro"
+            android:id="@+id/txtNombreUsuario_registro"
             android:background="@drawable/estilo_cajas_de_texto"
             android:hint="Nombre de usuario"
             android:layout_marginEnd="32dp"
@@ -46,8 +46,8 @@
             android:autofillHints=""
             tools:targetApi="o"
             android:drawableLeft="@drawable/ic_passwordusuario"
-            android:layout_below="@+id/txtUsuario_registro"
-            android:nextFocusForward="@+id/txtUsuario_registro"
+            android:layout_below="@+id/txtNombreUsuario_registro"
+            android:nextFocusForward="@+id/txtNombreUsuario_registro"
             android:drawablePadding="10dp"/>
     <EditText
             android:layout_width="0dp"
@@ -58,10 +58,10 @@
             android:hint="Correo "
             android:background="@drawable/estilo_cajas_de_texto"
             android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/txtUsuario_registro"
-            app:layout_constraintStart_toStartOf="@+id/txtUsuario_registro"
+            app:layout_constraintTop_toBottomOf="@+id/txtNombreUsuario_registro"
+            app:layout_constraintStart_toStartOf="@+id/txtNombreUsuario_registro"
             android:paddingLeft="25dp"
-            app:layout_constraintEnd_toEndOf="@+id/txtUsuario_registro"
+            app:layout_constraintEnd_toEndOf="@+id/txtNombreUsuario_registro"
             android:layout_below="@+id/txtPassword_registro"
             android:nextFocusForward="@+id/txtPassword_registro"
             android:drawableLeft="@drawable/ic_correousuario" android:drawablePadding="10dp"/>
@@ -88,8 +88,8 @@
             android:textStyle="bold"/>
     <Button
             android:text="Agregar foto"
-            android:layout_width="155dp"
-            android:layout_height="146dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:id="@+id/btnFoto_registro"
             android:textStyle="bold" android:textColor="@android:color/white"
             android:background="@drawable/estilo_foto_perfil"
@@ -98,4 +98,13 @@
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
             android:layout_marginTop="24dp"
             app:layout_constraintTop_toTopOf="parent"/>
+    <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:civ_border_width="4dp"
+            app:civ_border_color="@color/colorPrimaryDark"
+            app:layout_constraintTop_toTopOf="@+id/btnFoto_registro"
+            app:layout_constraintBottom_toBottomOf="@+id/btnFoto_registro"
+            app:layout_constraintEnd_toEndOf="@+id/btnFoto_registro"
+            app:layout_constraintStart_toStartOf="@+id/btnFoto_registro" android:id="@+id/imgAgregarFoto_registro"/>
 </android.support.constraint.ConstraintLayout>
