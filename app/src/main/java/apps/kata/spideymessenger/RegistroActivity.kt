@@ -173,6 +173,9 @@ class RegistroActivity : AppCompatActivity() {
         referenciaBaseDatos.setValue(usuario)
             .addOnSuccessListener {
                 //Toast.makeText(this, "Se ha guardado con exito el usuario en Storage", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this,MensajesActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or (Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
             }
     }
     class Usuario(val idUsuario:String, val nombreUsuario: String, val imagenPerfil: String)
