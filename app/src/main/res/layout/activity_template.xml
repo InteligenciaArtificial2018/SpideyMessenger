@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto" android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+    <android.support.v7.widget.LinearLayoutCompat android:layout_width="match_parent"
+                                                  android:layout_height="105dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+                app:srcCompat="@drawable/spideymessengerico"
+                android:id="@+id/imgUsuarioSpidey" android:layout_height="match_parent"
+                android:layout_width="80dp"/>
+        <TextView
+                android:text="Spidey Usuario"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/tvSpideyUsario" android:layout_weight="1"
+                android:layout_marginLeft="20dp" android:gravity="left|center" android:textSize="18sp"
+                android:textColor="@android:color/black"/>
+        </android.support.v7.widget.LinearLayoutCompat>
+
+
+</LinearLayout>
