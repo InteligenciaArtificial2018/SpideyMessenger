@@ -1,13 +1,15 @@
-package apps.kata.spideymessenger
+package apps.kata.spideymessenger.registro_login
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
+import apps.kata.spideymessenger.R
+import apps.kata.spideymessenger.mensajeria.MensajesActivity
+import apps.kata.spideymessenger.modelos.Usuario
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -169,14 +171,17 @@ class RegistroActivity : AppCompatActivity() {
     private fun guardarUsuarioAFireBase(imagenPerfil: String){
         val idUsuario = FirebaseAuth.getInstance().uid ?: ""
         val referenciaBaseDatos = FirebaseDatabase.getInstance().getReference("/infoUsuarios/$idUsuario")
-        val usuario = Usuario(idUsuario, txtNombreUsuario_registro.text.toString(), imagenPerfil)
+        val usuario = Usuario(
+            idUsuario,
+            txtNombreUsuario_registro.text.toString(),
+            imagenPerfil
+        )
         referenciaBaseDatos.setValue(usuario)
             .addOnSuccessListener {
                 //Toast.makeText(this, "Se ha guardado con exito el usuario en Storage", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this,MensajesActivity::class.java)
+                val intent = Intent(this, MensajesActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or (Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }
     }
-    class Usuario(val idUsuario:String, val nombreUsuario: String, val imagenPerfil: String)
 }

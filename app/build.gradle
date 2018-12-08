@@ -41,10 +41,11 @@ dependencies {
     // Agregando complemento para imagenes de perfil circular
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.android.support:recyclerview-v7:28.0.0'
-    // Implementacion de groupie para manejar lista de mensajes
-    //implementation 'com.xwray:groupie:2.3.0'
+    // Implementacion de groupie para manejar lista de usuarios
+    implementation 'com.xwray:groupie:2.1.0'
     // Implementacion de Picasso para manejar fotos de perfil de Usarios
     implementation 'com.squareup.picasso:picasso:2.71828'
+
 
 
 }

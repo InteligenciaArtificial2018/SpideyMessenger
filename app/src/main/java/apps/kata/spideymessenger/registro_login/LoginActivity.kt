@@ -1,8 +1,9 @@
-package apps.kata.spideymessenger
+package apps.kata.spideymessenger.registro_login
 
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import apps.kata.spideymessenger.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 

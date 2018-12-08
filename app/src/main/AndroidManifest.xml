@@ -9,25 +9,25 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".MensajesActivity">
+        <activity android:name=".mensajeria.MensajesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".RegistroActivity">
+        <activity android:name=".registro_login.RegistroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".registro_login.LoginActivity">
         </activity>
-        <activity android:name=".NuevoMensajeActivity">
+        <activity android:name=".mensajeria.NuevoMensajeActivity">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                       android:value=".MensajesActivity"/>
+                       android:value=".mensajeria.MensajesActivity"/>
         </activity>
     </application>
 

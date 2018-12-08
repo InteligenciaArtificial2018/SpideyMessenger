@@ -1,10 +1,12 @@
-package apps.kata.spideymessenger
+package apps.kata.spideymessenger.mensajeria
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import apps.kata.spideymessenger.R
+import apps.kata.spideymessenger.registro_login.RegistroActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class MensajesActivity : AppCompatActivity() {
