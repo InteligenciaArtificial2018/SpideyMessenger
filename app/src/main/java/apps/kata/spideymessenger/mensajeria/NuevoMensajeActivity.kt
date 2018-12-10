@@ -1,6 +1,7 @@
 package apps.kata.spideymessenger.mensajeria
 
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 
@@ -28,16 +29,15 @@ class NuevoMensajeActivity : AppCompatActivity() {
          * Modificar la barra de titulo para que pueda mostrar la información
          * de Seleccionar Usuario
          */
-        supportActionBar?.title = "Seleccionar Usuario"
-
-        //val adaptador = GroupAdapter<ViewHolder>()
-        //adaptador.add(ItemsUsuarios())
-        //adaptador.add(ItemsUsuarios())
-        //adaptador.add(ItemsUsuarios())
-
-        //rv_NuevosMensajes.adapter = adaptador
+        supportActionBar?.title = "Contactos"
 
         buscarUsuarios()
+    }
+    /**
+     * Enviando llave para captuarr el nombre del usuario
+     */
+    companion object {
+        val USER_kEY = "USER_KEY"
     }
 
     /**
@@ -56,6 +56,19 @@ class NuevoMensajeActivity : AppCompatActivity() {
                         adaptador.add(ItemsUsuarios(nombreUsuario))
                     }
                 }
+
+                adaptador.setOnItemClickListener { item, view ->
+                    /**
+                     * Enviar nombre de usuario mediante una llave al activity de ChatLog
+                     */
+                    val itemsUsuarios = item as ItemsUsuarios
+                    val intent = Intent(view.context, ChatLogActivity::class.java)
+                    //intent.putExtra(USER_kEY, itemsUsuarios.usuario.nombreUsuario)
+                    intent.putExtra(USER_kEY, itemsUsuarios.usuario)
+                    startActivity(intent)
+                    finish()
+                }
+                
                 rv_NuevosMensajes.adapter = adaptador
             }
 
@@ -78,6 +91,3 @@ class ItemsUsuarios(val usuario: Usuario): Item<ViewHolder>(){
         return R.layout.activity_template
     }
 }
-
-
-

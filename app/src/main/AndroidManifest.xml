@@ -26,8 +26,15 @@
         <activity android:name=".registro_login.LoginActivity">
         </activity>
         <activity android:name=".mensajeria.NuevoMensajeActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                       android:value=".mensajeria.MensajesActivity"/>
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".mensajeria.MensajesActivity"/>
+        </activity>
+        <activity android:name=".mensajeria.ChatLogActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".mensajeria.MensajesActivity"/>
+
         </activity>
     </application>
 

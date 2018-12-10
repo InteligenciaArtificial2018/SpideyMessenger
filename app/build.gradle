@@ -4,6 +4,10 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+androidExtensions {
+    experimental = true
+}
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -41,11 +45,10 @@ dependencies {
     // Agregando complemento para imagenes de perfil circular
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.android.support:recyclerview-v7:28.0.0'
-    // Implementacion de groupie para manejar lista de usuarios
+    // Implementacion de groupie para manejar listas
     implementation 'com.xwray:groupie:2.1.0'
     // Implementacion de Picasso para manejar fotos de perfil de Usarios
     implementation 'com.squareup.picasso:picasso:2.71828'
-
 
 
 }
