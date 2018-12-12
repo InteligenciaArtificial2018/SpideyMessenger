@@ -8,20 +8,20 @@
     android:layout_marginBottom="12dp">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:text="Este es mi mensaje que se envolverá en múltiples líneas y continuará"
-        android:maxWidth="240dp"
-        android:background="@drawable/estilo_cajas_de_texto"
-        android:padding="16dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+            android:id="@+id/tvRecibirMensaje"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:text="Este es mi mensaje que se ajustará en varias líneas y continuará"
+            android:maxWidth="240dp"
+            android:background="@drawable/estilo_cajas_de_texto"
+            android:padding="16dp"
+            app:layout_constraintStart_toEndOf="@+id/imgRecibirMensaje"
+            app:layout_constraintTop_toTopOf="@+id/imgRecibirMensaje"/>
 
     <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imgRecibirMensaje"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="8dp"
