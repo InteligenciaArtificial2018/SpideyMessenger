@@ -8,7 +8,7 @@
     android:layout_marginBottom="12dp">
 
     <TextView
-            android:id="@+id/tvEnviarMensaje"
+            android:id="@+id/tvParaMensaje"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -17,11 +17,11 @@
             android:maxWidth="240dp"
             android:padding="16dp"
             android:text="Este es mi mensaje que se ajustará en varias líneas y continuará"
-            app:layout_constraintEnd_toStartOf="@+id/imgEnviarMensaje"
-            app:layout_constraintTop_toTopOf="@+id/imgEnviarMensaje"/>
+            app:layout_constraintEnd_toStartOf="@+id/imgParaMensaje"
+            app:layout_constraintTop_toTopOf="@+id/imgParaMensaje"/>
 
     <ImageView
-            android:id="@+id/imgEnviarMensaje"
+            android:id="@+id/imgParaMensaje"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="8dp"

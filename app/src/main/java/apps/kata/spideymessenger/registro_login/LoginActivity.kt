@@ -14,11 +14,7 @@ class LoginActivity:AppCompatActivity(){
 
         //Accion al hacer click en el boton Iniciar Sesión
         btnIniciar_login.setOnClickListener {
-            val correo = txtCorreo_login.text.toString()
-            val password = txtPassword_login.text.toString()
 
-            // Iniciando Login de usuario ya registrado
-            FirebaseAuth.getInstance().signInWithEmailAndPassword(correo, password)
         }
 
         // Volver a pantalla de registro

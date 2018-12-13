@@ -6,106 +6,112 @@ import android.util.Log
 import apps.kata.spideymessenger.R
 import apps.kata.spideymessenger.modelos.MensajesChat
 import apps.kata.spideymessenger.modelos.Usuario
+import apps.kata.spideymessenger.vistas.ChatDeItem
+import apps.kata.spideymessenger.vistas.ChatParaItem
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_chat_log.*
-import kotlinx.android.synthetic.main.chat_enviar_mensaje.view.*
-import kotlinx.android.synthetic.main.chat_recibir_mensaje.view.*
-
 
 class ChatLogActivity : AppCompatActivity() {
 
-    companion object {
-        val TAG = "ChatLog"
+  companion object {
+    val TAG = "ChatLog"
+  }
+
+  val adapter = GroupAdapter<ViewHolder>()
+
+  var paraUsuario: Usuario? = null
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_chat_log)
+
+    rvChatLog.adapter = adapter
+
+    paraUsuario = intent.getParcelableExtra<Usuario>(NuevoMensajeActivity.USER_kEY)
+
+    supportActionBar?.title = paraUsuario?.nombreUsuario
+
+//    setupDummyData()
+    listenForMessages()
+
+    btnEnviar.setOnClickListener {
+      Log.d(TAG, "Attempt to send message....")
+      performSendMessage()
     }
+  }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_chat_log)
+  private fun listenForMessages() {
+    val fromId = FirebaseAuth.getInstance().uid
+    val toId = paraUsuario?.idUsuario
+    val ref = FirebaseDatabase.getInstance().getReference("/user-messages/$fromId/$toId")
 
-        /**
-         * Agregando a la barra de titulo el nombre del usuario
-         */
-        val usuario =  intent.getParcelableExtra<Usuario>(NuevoMensajeActivity.USER_kEY)
-        supportActionBar?.title = usuario.nombreUsuario
+    ref.addChildEventListener(object: ChildEventListener {
 
-        pruebaEnvioMensajes()
+      override fun onChildAdded(p0: DataSnapshot, p1: String?) {
+        val chatMessage = p0.getValue(MensajesChat::class.java)
 
-        btnEnviar.setOnClickListener {
-            Log.d(TAG, "Intentando enviar mensajes...")
+        if (chatMessage != null) {
+          Log.d(TAG, chatMessage.texto)
 
-            enviarMensajes()
+          if (chatMessage.deId == FirebaseAuth.getInstance().uid) {
+            val currentUser = UltimosMensajesActivity.usuarioActual ?: return
+            adapter.add(ChatDeItem(chatMessage.texto, currentUser))
+          } else {
+            adapter.add(ChatParaItem(chatMessage.texto, paraUsuario!!))
+          }
         }
-    }
 
+        rvChatLog.scrollToPosition(adapter.itemCount - 1)
 
-    /**
-     * Esta funcion se encargara de enviar y guardar los mensajes en Firebase
-     */
-    private fun enviarMensajes (){
-        // Como enviar mensajes con Firebase
-        val texto = txtEscribirMensaje.text.toString()
+      }
 
-        val recibirId = FirebaseAuth.getInstance().uid
-        val usuario =  intent.getParcelableExtra<Usuario>(NuevoMensajeActivity.USER_kEY)
-        val enviarId = usuario.idUsuario
+      override fun onCancelled(p0: DatabaseError) {}
+      override fun onChildChanged(p0: DataSnapshot, p1: String?) {}
+      override fun onChildMoved(p0: DataSnapshot, p1: String?) {}
+      override fun onChildRemoved(p0: DataSnapshot) {
+      }
 
-        if ( recibirId == null){
-            return
+    })
+
+  }
+
+  private fun performSendMessage() {
+    // how do we actually send a message to firebase...
+    val text = txtEscribirMensaje.text.toString()
+
+    val deId = FirebaseAuth.getInstance().uid
+    val usuario = intent.getParcelableExtra<Usuario>(NuevoMensajeActivity.USER_kEY)
+    val paraId = usuario.idUsuario
+
+    if (deId == null) return
+
+//    val reference = FirebaseDatabase.getInstance().getReference("/messages").push()
+    val reference = FirebaseDatabase.getInstance().getReference("/user-messages/$deId/$paraId").push()
+
+    val toReference = FirebaseDatabase.getInstance().getReference("/user-messages/$paraId/$deId").push()
+
+    val chatMessage = MensajesChat(reference.key!!, text, deId, paraId, System.currentTimeMillis() / 1000)
+
+    reference.setValue(chatMessage)
+        .addOnSuccessListener {
+          Log.d(TAG, "Saved our chat message: ${reference.key}")
+          txtEscribirMensaje.text.clear()
+          rvChatLog.scrollToPosition(adapter.itemCount - 1)
         }
 
-        val referencia = FirebaseDatabase.getInstance().getReference("mensajesUsuarios").push()
-        val mensajesChat = MensajesChat(referencia.key!!, texto, recibirId, enviarId, System.currentTimeMillis() / 1000 )
-        referencia.setValue(mensajesChat)
-            .addOnSuccessListener {
-                Log.d(TAG, "Se guardo su mensaje: ${referencia.key}")
-            }
-    }
+    toReference.setValue(chatMessage)
 
-    private fun pruebaEnvioMensajes(){
-        /**
-         * Traer lista de mensajes
-         */
-        val adaptador = GroupAdapter<ViewHolder>()
+    val latestMessageRef = FirebaseDatabase.getInstance().getReference("/latest-messages/$deId/$paraId")
+    latestMessageRef.setValue(chatMessage)
 
-        adaptador.add(ItemRecibirChat("Recibiendo mensajes........"))
-        adaptador.add(ItemEnviarChat("Enviando mensajes\nMensajes."))
-        adaptador.add(ItemRecibirChat("Recibiendo mensajes........"))
-        adaptador.add(ItemEnviarChat("Enviando mensajes\nMensajes."))
-        adaptador.add(ItemRecibirChat("Recibiendo mensajes........"))
-        adaptador.add(ItemEnviarChat("Enviando mensajes\nMensajes."))
-        adaptador.add(ItemRecibirChat("Recibiendo mensajes........"))
-        adaptador.add(ItemEnviarChat("Enviando mensajes\nMensajes."))
-
-        rvChatLog.adapter = adaptador
-    }
-}
-
-/**
- * Cargar Items para enviar chat
- */
-class ItemRecibirChat(val texto: String): Item<ViewHolder>() {
-    override fun bind(viewHolder: ViewHolder, position: Int) {
-        //viewHolder.itemView.text.tvRecibirMensaje.text = "Recibiendo mensaje..."
-        viewHolder.itemView.tvRecibirMensaje.text = texto
-    }
-    override fun getLayout(): Int {
-        return R.layout.chat_recibir_mensaje
-    }
-}
-
-/**
- * Cargar Items para recibir chat
- */
-class ItemEnviarChat(val texto: String): Item<ViewHolder>() {
-    override fun bind(viewHolder: ViewHolder, position: Int) {
-        //viewHolder.itemView.text.tvEnviarMensaje.text = "Enviando mensaje..."
-        viewHolder.itemView.tvEnviarMensaje.text = texto
-    }
-    override fun getLayout(): Int {
-        return R.layout.chat_enviar_mensaje
-    }
+    val latestMessageToRef = FirebaseDatabase.getInstance().getReference("/latest-messages/$paraId/$deId")
+    latestMessageToRef.setValue(chatMessage)
+  }
 }

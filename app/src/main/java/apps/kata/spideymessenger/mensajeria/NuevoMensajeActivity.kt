@@ -4,6 +4,7 @@ package apps.kata.spideymessenger.mensajeria
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
 
 import android.util.Log
 import apps.kata.spideymessenger.R
@@ -22,27 +23,17 @@ import kotlinx.android.synthetic.main.activity_template.view.*
 
 class NuevoMensajeActivity : AppCompatActivity() {
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nuevo_mensaje)
-        /**
-         * Modificar la barra de titulo para que pueda mostrar la información
-         * de Seleccionar Usuario
-         */
-        supportActionBar?.title = "Contactos"
-
+        supportActionBar?.title = "Seleccionar Usuario"
         buscarUsuarios()
     }
-    /**
-     * Enviando llave para captuarr el nombre del usuario
-     */
+
     companion object {
         val USER_kEY = "USER_KEY"
     }
-
-    /**
-     * Obtener datos de los usuarios desde Firebase
-     */
     private fun buscarUsuarios() {
         val ref = FirebaseDatabase.getInstance().getReference("/infoUsuarios")
         ref.addListenerForSingleValueEvent(object: ValueEventListener{
@@ -69,11 +60,10 @@ class NuevoMensajeActivity : AppCompatActivity() {
                     finish()
                 }
                 
-                rv_NuevosMensajes.adapter = adaptador
+                rvNuevosMensajes.adapter = adaptador
             }
 
-            override fun onCancelled(p0: DatabaseError) {
-            }
+            override fun onCancelled(p0: DatabaseError) {}
         })
     }
 }

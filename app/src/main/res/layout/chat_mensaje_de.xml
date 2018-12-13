@@ -8,7 +8,7 @@
     android:layout_marginBottom="12dp">
 
     <TextView
-            android:id="@+id/tvRecibirMensaje"
+            android:id="@+id/tvDeMensaje"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
@@ -17,11 +17,11 @@
             android:maxWidth="240dp"
             android:background="@drawable/estilo_cajas_de_texto"
             android:padding="16dp"
-            app:layout_constraintStart_toEndOf="@+id/imgRecibirMensaje"
-            app:layout_constraintTop_toTopOf="@+id/imgRecibirMensaje"/>
+            app:layout_constraintStart_toEndOf="@+id/imgDeMensaje"
+            app:layout_constraintTop_toTopOf="@+id/imgDeMensaje"/>
 
     <ImageView
-            android:id="@+id/imgRecibirMensaje"
+            android:id="@+id/imgDeMensaje"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="8dp"

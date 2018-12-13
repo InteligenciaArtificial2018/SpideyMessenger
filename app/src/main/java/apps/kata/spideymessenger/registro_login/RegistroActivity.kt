@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
 import apps.kata.spideymessenger.R
-import apps.kata.spideymessenger.mensajeria.MensajesActivity
 import apps.kata.spideymessenger.modelos.Usuario
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -179,7 +178,7 @@ class RegistroActivity : AppCompatActivity() {
         referenciaBaseDatos.setValue(usuario)
             .addOnSuccessListener {
                 //Toast.makeText(this, "Se ha guardado con exito el usuario en Storage", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, MensajesActivity::class.java)
+                val intent = Intent(this, UltimosMensajesActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or (Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }
