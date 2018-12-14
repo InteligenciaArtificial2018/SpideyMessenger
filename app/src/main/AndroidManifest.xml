@@ -12,29 +12,21 @@
         <activity android:name=".mensajeria.UltimosMensajesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".registro_login.RegistroActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-        <activity android:name=".registro_login.LoginActivity">
-        </activity>
+        <activity android:name=".registro_login.RegistroActivity"/>
+        <activity android:name=".registro_login.LoginActivity"/>
         <activity android:name=".mensajeria.NuevoMensajeActivity">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".mensajeria.UltimosMensajesActivity"/>
+                    android:value=".mensajeria.UltimosMensajesActivity" />
         </activity>
-        <activity android:name=".mensajeria.ChatLogActivity">
+        <activity android:name=".mensajeria.RegistroChatActivity">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value=".mensajeria.UltimosMensajesActivity"/>
-
         </activity>
     </application>
 

@@ -1,15 +1,11 @@
 package apps.kata.spideymessenger.mensajeria
 
-
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.DividerItemDecoration
-
 import android.util.Log
 import apps.kata.spideymessenger.R
 import apps.kata.spideymessenger.modelos.Usuario
-
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -19,14 +15,15 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_nuevo_mensaje.*
-import kotlinx.android.synthetic.main.activity_template.view.*
+import kotlinx.android.synthetic.main.nuevo_mensaje_lista_usuario.view.*
+
 
 class NuevoMensajeActivity : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nuevo_mensaje)
+        // Editando barra de titulo
         supportActionBar?.title = "Seleccionar Usuario"
         buscarUsuarios()
     }
@@ -34,6 +31,10 @@ class NuevoMensajeActivity : AppCompatActivity() {
     companion object {
         val USER_kEY = "USER_KEY"
     }
+
+    /**
+     * Realizar busqueda de usuarios en la base de datos
+     */
     private fun buscarUsuarios() {
         val ref = FirebaseDatabase.getInstance().getReference("/infoUsuarios")
         ref.addListenerForSingleValueEvent(object: ValueEventListener{
@@ -41,7 +42,7 @@ class NuevoMensajeActivity : AppCompatActivity() {
                 val adaptador = GroupAdapter<ViewHolder>()
 
                 p0.children.forEach{
-                    Log.d("NewMessage", it.toString())
+                    Log.d("NuevoMensaje", it.toString())
                     val nombreUsuario = it.getValue(Usuario::class.java)
                     if (nombreUsuario != null){
                         adaptador.add(ItemsUsuarios(nombreUsuario))
@@ -49,20 +50,15 @@ class NuevoMensajeActivity : AppCompatActivity() {
                 }
 
                 adaptador.setOnItemClickListener { item, view ->
-                    /**
-                     * Enviar nombre de usuario mediante una llave al activity de ChatLog
-                     */
                     val itemsUsuarios = item as ItemsUsuarios
-                    val intent = Intent(view.context, ChatLogActivity::class.java)
-                    //intent.putExtra(USER_kEY, itemsUsuarios.usuario.nombreUsuario)
+
+                    val intent = Intent(view.context, RegistroChatActivity::class.java)
                     intent.putExtra(USER_kEY, itemsUsuarios.usuario)
                     startActivity(intent)
                     finish()
                 }
-                
                 rvNuevosMensajes.adapter = adaptador
             }
-
             override fun onCancelled(p0: DatabaseError) {}
         })
     }
@@ -73,11 +69,11 @@ class NuevoMensajeActivity : AppCompatActivity() {
  */
 class ItemsUsuarios(val usuario: Usuario): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
-        viewHolder.itemView.tvNombreUsuario_template.text = usuario.nombreUsuario
-        Picasso.get().load(usuario.imagenPerfil).into(viewHolder.itemView.imgUsuarioSpidey)
+        viewHolder.itemView.tv_nuevo_mensaje_lista_usuario.text = usuario.nombreUsuario
+        Picasso.get().load(usuario.imagenPerfil).into(viewHolder.itemView.img_nuevo_mensaje)
     }
 
     override fun getLayout(): Int {
-        return R.layout.activity_template
+        return R.layout.nuevo_mensaje_lista_usuario
     }
 }

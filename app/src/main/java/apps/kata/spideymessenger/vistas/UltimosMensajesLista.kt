@@ -11,38 +11,37 @@ import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.lista_mensajes.view.*
+import kotlinx.android.synthetic.main.ultimos_mensajes_lista.view.*
 
 
 class UltimosMensajesLista(val mensajesChat: MensajesChat): Item<ViewHolder>() {
   var chatAmigo: Usuario? = null
 
   override fun bind(viewHolder: ViewHolder, position: Int) {
-    viewHolder.itemView.tv_lista_mensaje.text = mensajesChat.texto
+    viewHolder.itemView.mensaje_textview_ultimos_mensajes.text = mensajesChat.texto
 
-    val chatPartnerId: String
+    val chatAmigoId: String
     if (mensajesChat.deId == FirebaseAuth.getInstance().uid) {
-      chatPartnerId = mensajesChat.paraId
+      chatAmigoId = mensajesChat.paraId
     } else {
-      chatPartnerId = mensajesChat.deId
+      chatAmigoId = mensajesChat.deId
     }
 
-    val ref = FirebaseDatabase.getInstance().getReference("/users/$chatPartnerId")
+    val ref = FirebaseDatabase.getInstance().getReference("/infoUsuarios/$chatAmigoId")
     ref.addListenerForSingleValueEvent(object: ValueEventListener {
       override fun onDataChange(p0: DataSnapshot) {
         chatAmigo = p0.getValue(Usuario::class.java)
-        viewHolder.itemView.tv_usuario_lista_mensaje.text = chatAmigo?.nombreUsuario
+        viewHolder.itemView.usuario_textview_ultimos_mensajes.text = chatAmigo?.nombreUsuario
 
-        val targetImageView = viewHolder.itemView.img_lista_mensaje
+        val targetImageView = viewHolder.itemView.img_ultimos_mensajes
         Picasso.get().load(chatAmigo?.imagenPerfil).into(targetImageView)
       }
 
-      override fun onCancelled(p0: DatabaseError) {
-      }
+      override fun onCancelled(p0: DatabaseError) {}
     })
   }
 
   override fun getLayout(): Int {
-    return R.layout.lista_mensajes
+    return R.layout.ultimos_mensajes_lista
   }
 }

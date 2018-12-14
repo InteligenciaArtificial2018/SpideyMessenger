@@ -50,7 +50,6 @@ dependencies {
     // Implementacion de Picasso para manejar fotos de perfil de Usarios
     implementation 'com.squareup.picasso:picasso:2.71828'
 
-
 }
 
 // Agregando plugin de google services para utilizar Firebase

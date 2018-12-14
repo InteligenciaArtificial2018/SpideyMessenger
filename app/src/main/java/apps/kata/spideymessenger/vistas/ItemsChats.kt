@@ -9,14 +9,14 @@ import kotlinx.android.synthetic.main.chat_mensaje_de.view.*
 import kotlinx.android.synthetic.main.chat_mensaje_para.view.*
 
 /**
- * Cargando los datos del ususrio para interactuar con mensajes
+ * Cargando los datos del usuario para interactuar con mensajes
  */
 class ChatDeItem (val texto: String, val usuario: Usuario): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
-        viewHolder.itemView.tvDeMensaje.text = texto
+        viewHolder.itemView.textview_de_lista.text = texto
         // Reemplaza la imagen de Spidey Logo para cargar la imagen de perfil del usuario
         val imagenPerfil = usuario.imagenPerfil
-        val imagenPerfilUsuario = viewHolder.itemView.imgDeMensaje
+        val imagenPerfilUsuario = viewHolder.itemView.img_chat_de_lista
         // Captura la imagen paraser tomada por la libreria Picasso y transformarla
         Picasso.get().load(imagenPerfil).into(imagenPerfilUsuario)
     }
@@ -28,9 +28,10 @@ class ChatDeItem (val texto: String, val usuario: Usuario): Item<ViewHolder>(){
 
 class ChatParaItem (val texto: String, val usuario: Usuario): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
+        viewHolder.itemView.textview_para_lista.text = texto
         // Reemplaza la imagen de Spidey Logo para cargar la imagen de perfil del usuario
         val imagenPerfil = usuario.imagenPerfil
-        val imagenPerfilUsuario = viewHolder.itemView.imgParaMensaje
+        val imagenPerfilUsuario = viewHolder.itemView.img_chat_para_lista
         // Captura la imagen paraser tomada por la libreria Picasso y transformarla
         Picasso.get().load(imagenPerfil).into(imagenPerfilUsuario)
     }

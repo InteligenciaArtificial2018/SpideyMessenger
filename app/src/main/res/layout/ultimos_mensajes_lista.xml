@@ -6,7 +6,7 @@
     android:layout_height="120dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageview_latest_message"
+        android:id="@+id/img_ultimos_mensajes"
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_marginBottom="8dp"
@@ -20,34 +20,34 @@
         app:srcCompat="@android:drawable/btn_star_big_on" />
 
     <TextView
-        android:id="@+id/username_textview_latest_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        tools:text="Username"
-        android:textColor="@android:color/black"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/message_textview_latest_message"
-        app:layout_constraintStart_toEndOf="@+id/imageview_latest_message"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+            android:id="@+id/usuario_textview_ultimos_mensajes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            tools:text="Usuario"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/mensaje_textview_ultimos_mensajes"
+            app:layout_constraintStart_toEndOf="@+id/img_ultimos_mensajes"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"/>
 
     <TextView
-        android:id="@+id/message_textview_latest_message"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="Latest Message"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageview_latest_message"
-        app:layout_constraintTop_toBottomOf="@+id/username_textview_latest_message" />
+            android:id="@+id/mensaje_textview_ultimos_mensajes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Ultimos mensajes..."
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/img_ultimos_mensajes"
+            app:layout_constraintTop_toBottomOf="@+id/usuario_textview_ultimos_mensajes"/>
 </android.support.constraint.ConstraintLayout>
