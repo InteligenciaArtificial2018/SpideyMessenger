@@ -47,5 +47,4 @@ class LoginActivity: AppCompatActivity() {
           Toast.makeText(this, "Error al iniciar Login", Toast.LENGTH_SHORT).show()
         }
   }
-
 }

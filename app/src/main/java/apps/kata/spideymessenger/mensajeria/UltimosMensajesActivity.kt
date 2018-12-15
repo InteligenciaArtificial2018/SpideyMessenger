@@ -49,6 +49,7 @@ class UltimosMensajesActivity : AppCompatActivity() {
     listaUltimosMensajes()
     buscarUsuario()
     verificarInicioSesionUsuario()
+    actualizarMensajes()
   }
 
   val mapaUltimosMensajes = HashMap<String, MensajesChat>()
@@ -90,7 +91,7 @@ class UltimosMensajesActivity : AppCompatActivity() {
 
       override fun onDataChange(p0: DataSnapshot) {
         usuarioActual = p0.getValue(Usuario::class.java)
-        Log.d("LatestMessages", "Current user ${usuarioActual?.imagenPerfil}")
+        Log.d("UltimosMensajes", "Usuario Actual ${usuarioActual?.imagenPerfil}")
       }
 
       override fun onCancelled(p0: DatabaseError) {}
@@ -129,3 +130,6 @@ class UltimosMensajesActivity : AppCompatActivity() {
   }
 
 }
+
+
+

@@ -7,3 +7,6 @@ import kotlinx.android.parcel.Parcelize
 class Usuario (val idUsuario: String, val nombreUsuario: String, val imagenPerfil: String): Parcelable {
     constructor(): this("","", "")
 }
+
+
+

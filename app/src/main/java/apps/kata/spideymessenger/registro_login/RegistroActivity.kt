@@ -41,7 +41,6 @@ class RegistroActivity : AppCompatActivity() {
              * Accediendo a la galeria de fotos para seleccionar una imagen de perfil
              */
             val intent = Intent(Intent.ACTION_PICK)
-            intent.type ="image/*"
             startActivityForResult(intent, 0)
             //Toast.makeText(this,"Intentando mostrar foto para seleccionarla",Toast.LENGTH_SHORT).show()
         }
@@ -72,16 +71,9 @@ class RegistroActivity : AppCompatActivity() {
              */
             imgAgregarFoto_registro.setImageBitmap(bitmap)
             btnFoto_registro.alpha = 0f
-
-            /**
-             * Agregar imagen al boton de Agregar Foto
-             */
-
-            //val bitmapDrawable = BitmapDrawable(bitmap)
-            //btnFoto_registro.setBackgroundDrawable(bitmapDrawable)
-
         }
     }
+
 
     /**
      * Funcion para el registro de Usuario
